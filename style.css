@@ -1,0 +1,84 @@
+body{
+    height: 101vh;
+}
+.centr{
+    text-align: center !important;
+}
+.main_wrapper{
+    padding-top: 4em;
+}
+.MotSpeech{
+    height: 70px;
+    margin-bottom: 1rem;
+    display: block;
+    text-align: center;
+}
+.anime {
+    animation-name: bdSlowIn;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+.enter_data{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.button_plus{
+    cursor:pointer;
+    border-radius: 50%;
+    margin-left: 2em;
+    transition: all 0.3s;
+}
+.button_plus:hover{
+    box-shadow: 2px 2px 5px hsl(349, 64%, 16%);
+    background-color: hsl(348, 100%, 61%) !important;
+}
+
+.select{
+    /* height: 50px !important; */
+    margin-right: 1rem;
+}
+/* если выбрана 1  то красное is-danger */
+/* если выбрана 2  то красное is-warning */
+/* если выбрана 3  то красное is-success */
+
+
+.deals{
+    width: 86%;
+    display: flex;
+    flex-direction: column;
+}
+
+.thrash{
+    margin-top: 20px;
+    margin-left: 0.5em;
+    font-size: 2em;
+    color: white;
+}
+.tr i{
+    text-align: center;
+    margin-bottom: 50%;
+}
+.thrash:hover{
+     cursor:pointer;
+     transform: all 0.4s;
+}
+
+.task{
+    width: 100%;
+    padding: 10px;
+    background:hsl(0,0,96%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+.wrap_task{
+    display: flex;
+    align-items: center;
+    animation-name: bdSlowIn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    margin-top: 20px;
+}
+

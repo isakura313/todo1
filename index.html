@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bis manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <script src="code.js" defer></script>
+</head>
+<body class="has-background-link">
+    <div class="main_wrapper columns is-centered has-text-light">
+        <div class="container column is-half-desktop  is-offset-3">
+        <div class="todo">
+            <h1 class="is-size-1 centr"> Todo Manager</h1>
+            <q class="MotSpeech is-size-5">То, что не убивает, делает нас сильнее</q>
+            <div class="enter_data">
+
+            <div class="field">
+                <div class="control">
+                <div class="select is-primary">
+                <select name="important" id="important" class>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                    </div>
+                </div>
+            </div>
+
+                <input type="text" placeholder="Добавить  задание..." class="input is-primary is-medium">
+                <div class="button_plus has-background-success"> 
+                    <span class="icon is-large"> 
+                        <i class="fas fa-plus"></i> 
+                    </span>
+                </div>
+            </div>
+            <!-- тут будут таски -->
+            <div class="deals">  </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
