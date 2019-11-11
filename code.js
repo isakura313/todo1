@@ -1,11 +1,17 @@
 //класс конструктор item в котором есть цвет и название дел
-//стоит добавить дату
-//добавить id на каждое дело
-//добавить генерацию id
 //здесь чисто технически у нас будет деструктуризация, когда мы будем отправлять текст.  ну чисто технически, мы можем ее попробовать
+// не вижу никакого смысла разносить генерацию сообщения. Она у нас точно должна быть в одной функции
+
+
+
+/* 
+класс ITEMDEAL
+нужноп переписать  саму генерацию класса
+
+*/
+
 class ItemDeal{
-    constructor(id, name, color, now){
-        this.id = +new Date();
+    constructor(name, color, now){
         this.name = name;
         this.color = color; 
         this.now = new Date();
@@ -13,16 +19,12 @@ class ItemDeal{
 }
 
 // просто пример создания
-let item  = new ItemDeal("",'prikol', 'red');
-console.dir(item);
+let item  = new ItemDeal('prikol', 'red'); // здесь скорее всего можно по человечески переписать конструктор
+console.dir(item); // просто тестовый прогон
+console.log(+item.now);
 
 
-let motivation_array = [
-    'Двигайся вперед и никогда не сдавайся',
-    'Расти большой не будь лапшой',
-    'Just do it',
-    'Лучший в мире за работой'
-];
+
 
 let select = document.querySelector('#important');
 // сообщение о  степени важности нашего дела
@@ -62,10 +64,11 @@ let Month_Array = [ 'Январь', 'Февраль ', 'Март', 'Апрель
         let dat = Date.parse(parse_content.now);
         dat  = new Date(dat)
         console.warn(dat.getDate());
+
         deals.insertAdjacentHTML('afterbegin', 
         `<div class='wrap-task' id ="${parse_content.id}">
-            <div class="task is-size-4 ${IA[parse_content.color]}">
-                <p>${parse_content.name} ${parse_content.color} </p>
+            <div class="task is-size-4">
+            <p> <span class="${IA[parse_content.color]}">  ${parse_content.name}  </span>  ${dat.getDate()} ${Month_Array[dat.getMonth()]} ${dat.getFullYear()} </p>
             </div>
         <span class="icon is-large tr">
         <i class="fas fa-trash-alt trash"></i>
@@ -131,8 +134,18 @@ deals.addEventListener('click', function (event) {
   });
   
 
+/* часть связанная с мотивацией
+игрока 
+*/
 
 
+
+  let motivation_array = [
+    'Двигайся вперед и никогда не сдавайся',
+    'Расти большой не будь лапшой',
+    'Just do it',
+    'Лучший в мире за работой'
+];
 
   function changePhrase() {
     document.querySelector('.MotSpeech').innerHTML = motivation_array[Math.round(Math.random() * (motivation_array.length - 1))];
@@ -165,6 +178,8 @@ deals.addEventListener('click', function (event) {
         break;
     }
   }
+
+  ChangeColorSelect(select);
 
 
   //сюда я хочу заложить отдельную функцию не генерацию и парсинг времени
