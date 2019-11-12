@@ -80,7 +80,7 @@ let deals = document.querySelector('.deals');
         let content = localStorage.getItem(lk_key);
         let item = JSON.parse(content);
         let tempo_dat = Date.parse(item.now);
-        item.now = new Date(dat);
+        item.now = new Date(tempo_dat);
         GenerateDom(deals, item);
     }
 })();
@@ -96,8 +96,49 @@ function createItem(){
     let item_toJSON = JSON.stringify(item);
     localStorage.setItem(+item.now, item_toJSON);   
     GenerateDom(deals, item);
-}
+    field.value = '';
+};
 
+button.addEventListener('click', createItem);
+
+document.addEventListener('keypress', (e) => {
+    if(e.keyCode == 13 ){
+        createItem();
+    }
+
+})
+
+
+
+
+//удаление элемента
+
+deals.addEventListener('click', (e) => {
+    let item = event.target.closest('i');
+    let item2 = event.target.closest('.wrap_task');
+    if(!item || !deals.contains(item)){
+        return;
+    }
+    item2.className = `animated ${Animation_Array[GR(Animation_Array)]} wrap-task`;
+    setTimeout(() => {
+        item2.remove();
+        localStorage.removeItem(item2.id);
+    }, 1500);
+})
+
+
+//функция смены фраз
+//вставить уникальный рандом только
+setInterval(() => {
+    (function ChangePhrase(){
+        document.querySelector('.MotSpeech').className ='MotSpeech is-size-5 animated bounceIn';
+        document.querySelector('.MotSpeech').innerHTML = motivation_array[GR(motivation_array)];
+        setTimeout(() => {
+            document.querySelector('.MotSpeech').classList.remove("bounceIn");
+        }, 2900);
+    })();
+    
+}, 3000);
 
 
 
@@ -113,8 +154,14 @@ function GenerateDom(aimElem, obj){
             <i class="fas fa-trash-alt thrash"> </i>
         </span>
     </div>`);
-    // field.value = '';
 }
+
+function GR(arr){
+    return Math.round(Math.random() * (arr.length - 1));
+}
+
+
+
 
 
 

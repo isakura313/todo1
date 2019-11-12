@@ -14,13 +14,9 @@ body{
     margin-bottom: 1rem;
     display: block;
     text-align: center;
+    animation-duration: 5s;
 }
-.anime {
-    animation-name: bdSlowIn;
-    animation-duration: 8s;
-    /* она берется из бульмы */
-    animation-iteration-count: infinite;
-}
+
 .enter_data{
     display: flex;
     align-items: center;
@@ -52,25 +48,29 @@ body{
     flex-direction: column;
 }
 
-.thrash{
+.tr{
     margin-top: 20px;
     margin-left: 0.5em;
     font-size: 2em;
     color: white;
+    
 }
 .tr i{
     text-align: center;
     margin-bottom: 50%;
+    display: flex;
+    align-items: center;
 }
-.thrash:hover{
+.tr:hover{
      cursor:pointer;
      transform: all 0.4s;
+     color: tomato;
 }
 
 .task{
-    width: 85%;
+    width: 80%;
     padding: 10px;
-    background:hsl(0,0,96%);
+    background-color:rgb(253, 253, 253);
     border-radius: 15px;
     display: flex;
     align-items: center;
