@@ -2,21 +2,54 @@
 //стоит добавить дату
 //добавить id на каждое дело
 //добавить генерацию id
-class ItemDeal{
-    constructor(name, color, now){
+
+
+// некий пример, как может выглядеть конструктор в ООП
+
+class Dog {
+    constructor(name, poroda, age, bark) {
         this.name = name;
-        this.color = color; 
-        this.now = new Date;
+        this.poroda = poroda;
+        this.age = age;
+        this.bark = bark = () => {
+            alert("woow");
+        }
     }
 }
+
+let Lassy = new Dog("Lassy", "terier", 5);
+
+
+class ItemDeal {
+    constructor(name, color) {
+        this.name = name; //имя дела
+        this.color = color;  //цвет дела
+        this.now = new Date; // дата создания и отсюда будет сгенерирован id
+    }
+}
+
+let todo = new ItemDeal("delo", "red");
+// console.dir(todo);
 
 
 
 let motivation_array = [
-    'Двигайся вперед',
+    'Двигайся вперед и никогда не сдаваться',
     'Расти большой не будь лапшой',
-    'Just do it'
+    'Just do it',
+    'Лучший в мире за работой'
 ];
+
+let IA = ['has-text-danger',
+    'has-text-warning',
+    'has-text-success']; //цвета важности из бульмы IA = important array
+
+let Animation_Array = ['bounceOut',
+    'rollOut', 'rotateOut', 'lightSpeedOut'];  // различные анимации удаления todo - item
+
+let Month_Array = ['Января', "Февраля", "Марта", "Апреля" , "Мая", "Июня", "Июля", "Августа", "Сентября","Октября", "Ноября", "Декабря"];	
+
+
 
 let select = document.querySelector('#important');
 // сообщение о важности нашего дела
@@ -27,37 +60,66 @@ let button = document.querySelector('.button_plus');
 let deals = document.querySelector('.deals');
 // куда мы будем вписывать наши дела
 
-/* если выбрана 1  то красное is-danger */
-/* если выбрана 2  то красное is-warning */
-/* если выбрана 3  то красное is-success */
+
 // только на селекте
+/* если выбрана 1  то красное  has-background-danger*/
+/* если выбрана 2  то красное has-background-info */
+/* если выбрана 3  то красное has-background-primary  */
 
 
-// а на сообщения - 
-// срочное - has-text-danger
-//полусрочное - has-text-warning
-//  несрочное - has-text-success
-//IA = important array
-let IA = ['has-text-danger', 'has-text-warning', 'has-text-success'];
 
-let Animation_Array = ['bounceOut', 'rollOut', 'rotateOut', 'lightSpeedOut'];
+//здесь реализован самовызывающийся модуль
+//эта функция вызывается сразу при загрузке страницы
+//она берет данные из localStorage и рисует их 
 
-
-//здесь у нас происходит первичная прорисовка приложения
-
-
-(function drawOnLoad(){
+(function drawOnLoad() {
     for (let i = 0; i < localStorage.length; i++) {
+
         let lk_key = localStorage.key(i);
+
         let content = localStorage.getItem(lk_key);
-        let parse_content = JSON.parse(content);
-        console.dir(parse_content);
-        console.log(parse_content.name);
-        console.log(parse_content.color);
-        console.log(parse_content.now.getDate());
-        //здесь у нас пойдет сама отрисовочка
+        let item = JSON.parse(content);
+        let tempo_dat = Date.parse(item.now);
+        item.now = new Date(dat);
+        GenerateDom(deals, item);
     }
 })();
+
+
+
+function createItem(){
+    let text = field.value;
+    if(!text){
+        return;
+    } 
+    let item = new ItemDeal(`${text}`,`${select.value - 1}`);
+    let item_toJSON = JSON.stringify(item);
+    localStorage.setItem(+item.now, item_toJSON);   
+    GenerateDom(deals, item);
+}
+
+
+
+
+//генерация различных анимаций на создании
+function GenerateDom(aimElem, obj){
+    aimElem.insertAdjacentHTML('afterbegin', 
+    `<div class="wrap_task animated zoomInLeft" id="${+obj.now}">
+        <div class="task is-size-4">
+            <p> <span class="${IA[select.value - 1]}"> ${obj.name} </span>
+            ${obj.now.getDate()} ${Month_Array[obj.now.getMonth()]} ${obj.now.getFullYear()} </p>
+        </div>
+        <span class="icon is-large tr">
+            <i class="fas fa-trash-alt thrash"> </i>
+        </span>
+    </div>`);
+    // field.value = '';
+}
+
+
+
+
+
 
 
 

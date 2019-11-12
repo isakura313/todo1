@@ -2,13 +2,15 @@ body{
     height: 101vh;
 }
 .centr{
-    text-align: center !important;
+    text-align: center;
 }
+
 .main_wrapper{
-    padding-top: 4em;
+    padding-top: 2em;
 }
+
 .MotSpeech{
-    height: 70px;
+    /* height: 70px; */
     margin-bottom: 1rem;
     display: block;
     text-align: center;
@@ -16,6 +18,7 @@ body{
 .anime {
     animation-name: bdSlowIn;
     animation-duration: 8s;
+    /* она берется из бульмы */
     animation-iteration-count: infinite;
 }
 .enter_data{
@@ -27,7 +30,7 @@ body{
     cursor:pointer;
     border-radius: 50%;
     margin-left: 2em;
-    transition: all 0.3s;
+    transition: all 0.5s;
 }
 .button_plus:hover{
     box-shadow: 2px 2px 5px hsl(349, 64%, 16%);
@@ -38,9 +41,9 @@ body{
     /* height: 50px !important; */
     margin-right: 1rem;
 }
-/* если выбрана 1  то красное is-danger */
+/* если выбрана 1  то красное has-background-danger */
 /* если выбрана 2  то красное is-warning */
-/* если выбрана 3  то красное is-success */
+/* если выбрана 3  то красное has-background-info */
 
 
 .deals{
@@ -65,7 +68,7 @@ body{
 }
 
 .task{
-    width: 100%;
+    width: 85%;
     padding: 10px;
     background:hsl(0,0,96%);
     border-radius: 15px;
