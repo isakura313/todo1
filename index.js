@@ -6,6 +6,11 @@
 
 // некий пример, как может выглядеть конструктор в ООП
 
+const ItemDeal = require('./ItemDeal').default;
+module.exports = ItemDeal;
+
+
+
 class Dog {
     constructor(name, poroda, age, bark) {
         this.name = name;
@@ -20,13 +25,7 @@ class Dog {
 let Lassy = new Dog("Lassy", "terier", 5);
 
 
-class ItemDeal {
-    constructor(name, color) {
-        this.name = name; //имя дела
-        this.color = color;  //цвет дела
-        this.now = new Date; // дата создания и отсюда будет сгенерирован id
-    }
-}
+
 
 let todo = new ItemDeal("delo", "red");
 // console.dir(todo);
@@ -37,7 +36,9 @@ let motivation_array = [
     'Двигайся вперед и никогда не сдаваться',
     'Расти большой не будь лапшой',
     'Just do it',
-    'Лучший в мире за работой'
+    'Лучший в мире за работой',
+    'Просто садись и делай',
+    'Ты большой молодец'
 ];
 
 let IA = ['has-text-danger',
@@ -61,10 +62,6 @@ let deals = document.querySelector('.deals');
 // куда мы будем вписывать наши дела
 
 
-// только на селекте
-/* если выбрана 1  то красное  has-background-danger*/
-/* если выбрана 2  то красное has-background-info */
-/* если выбрана 3  то красное has-background-primary  */
 
 
 
@@ -74,9 +71,9 @@ let deals = document.querySelector('.deals');
 
 (function drawOnLoad() {
     for (let i = 0; i < localStorage.length; i++) {
-
+        
         let lk_key = localStorage.key(i);
-
+        
         let content = localStorage.getItem(lk_key);
         let item = JSON.parse(content);
         let tempo_dat = Date.parse(item.now);
@@ -84,8 +81,6 @@ let deals = document.querySelector('.deals');
         GenerateDom(deals, item);
     }
 })();
-
-
 
 function createItem(){
     let text = field.value;
@@ -105,10 +100,8 @@ document.addEventListener('keypress', (e) => {
     if(e.keyCode == 13 ){
         createItem();
     }
-
+    
 })
-
-
 
 
 //удаление элемента
@@ -146,13 +139,13 @@ setInterval(() => {
 function GenerateDom(aimElem, obj){
     aimElem.insertAdjacentHTML('afterbegin', 
     `<div class="wrap_task animated zoomInLeft" id="${+obj.now}">
-        <div class="task is-size-4">
-            <p> <span class="${IA[select.value - 1]}"> ${obj.name} </span>
-            ${obj.now.getDate()} ${Month_Array[obj.now.getMonth()]} ${obj.now.getFullYear()} </p>
-        </div>
-        <span class="icon is-large tr">
-            <i class="fas fa-trash-alt thrash"> </i>
-        </span>
+    <div class="task is-size-4">
+    <p> <span class="${IA[select.value - 1]}"> ${obj.name} </span>
+    ${obj.now.getDate()} ${Month_Array[obj.now.getMonth()]} ${obj.now.getFullYear()} </p>
+    </div>
+    <span class="icon is-large tr">
+    <i class="fas fa-trash-alt thrash"> </i>
+    </span>
     </div>`);
 }
 
@@ -161,8 +154,39 @@ function GR(arr){
 }
 
 
+// только на селекте
+/* если выбрана 1  то красное  has-background-danger*/
+/* если выбрана 2  то красное has-background-info */
+/* если выбрана 3  то красное has-background-primary  */
 
+function ChangeColorSelect(el){
+    switch (el.value) {
+        case '1':
+            el.className = "has-background-danger has-text-white";
+            break;
+        case '2':
+            el.className = "has-background-info has-text-white";
+            break;
+        case '3':
+            el.className = "has-background-primary has-text-white";
+            break;
 
+        default:
+            break;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () =>{
+    ChangeColorSelect(select);
+})
+select.onchange = () =>{
+    ChangeColorSelect(select);
+}
+
+// Д/З
+// реализовать следующее:
+// смена важности дела ( в селекте по номеру)
+//если нажата 1 - тогда важность выбирается сама красная, и так далее
 
 
 
